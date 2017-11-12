@@ -1,27 +1,13 @@
 import React from 'react'
 
-class lessonPost extends React.Component {
+class LessonPost extends React.Component {
     constructor() {
         super();
         this.state = {
             message: '',
-            lessons: []
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.getLessons = this.getLessons.bind(this)
-    }
-
-    componentDidMount() {
-        this.getLessons()
-    }
-
-    getLessons() {
-        fetch('/api/lessons')
-            .then(resp => resp.json())
-            .then(json => {
-                this.setState({ lessons: json })
-            });
     }
 
     handleChange(e) {
@@ -42,7 +28,11 @@ class lessonPost extends React.Component {
                 'Content-Type': 'application/json',
             }
         })
-            .then(console.log('yay'));
+            .then(resp => resp.json())
+            .then(lesson => {
+                this.props.createLesson(lesson)
+                this.setState({ message: '' })
+            });
     }
 
     render() {
@@ -56,15 +46,9 @@ class lessonPost extends React.Component {
                         <button>Post Lesson</button>
                     </div>
                 </form>
-                <div>
-                    {this.state.lessons.map(lesson => {
-                        console.log(lesson, 'lesson')
-                        return <p>{lesson.message}</p>
-                    })}
-                </div>
             </div>
         )
     }
 }
 
-export default lessonPost
+export default LessonPost
