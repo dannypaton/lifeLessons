@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import UserCard from './components/User-Card'
 import LessonPost from './components/Lesson-Post'
 import LessonWrapper from './components/Lesson-Wrapper'
 
