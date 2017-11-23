@@ -3,7 +3,7 @@ import React from 'React'
 class LessonView extends React.Component {
 	render() {
 		const { message } = this.props.lesson
-		console.log(this, 'this in lessonView')
+
 		return (
 			<section className='lessonView'>
 				<div>

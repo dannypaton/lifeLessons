@@ -5,8 +5,8 @@ class LessonWrapper extends React.Component {
 	render() {
 		return (
 			<div className="LessonWrapper">
-				{this.props.lessons.map(lesson => {
-					return <LessonView lesson={lesson} />
+				{this.props.lessons.map((lesson, i) => {
+					return <LessonView key={i} lesson={lesson} />
 				})}
 			</div>
 		)

@@ -20,10 +20,15 @@ class App extends React.Component {
     }
 
     createLesson(lesson) {
-        console.log(lesson, 'test')
+        // console.log(lesson, 'test')
         const allLessons = this.state.lessons
         allLessons.push(lesson)
         this.setState({ lessons: allLessons })
+    }
+
+    getCurrentUser() {
+        fetch('/api/users')
+            .then(resp => console.log(resp, 'resp'))
     }
 
     getLessons() {
@@ -37,8 +42,13 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <LessonPost createLesson={this.createLesson} />
-                <LessonWrapper lessons={this.state.lessons} />
+                <div>
+                    <UserCard />
+                </div>
+                <div>
+                    <LessonPost createLesson={this.createLesson} />
+                    <LessonWrapper lessons={this.state.lessons} />
+                </div>
             </div>
         )
     }

@@ -3,33 +3,36 @@ const users = {};
 
 // GET
 users.getUsers = (req, res) => {
-    User.find(function (err, docs) {
-        if (err) {
-            res
-                .status(400)
-                .send(err)
-        } else {
-            res
-                .status(200)
-                .send(docs)
-        }
-    });
+    console.log(req, 'req', res, 'res')
+    // User.find(function (err, docs) {
+    //     if (err) {
+    //         res
+    //             .status(400)
+    //             .send(err)
+    //     } else {
+    //         res
+    //             .status(200)
+    //             .send(docs)
+    //     }
+    // });
 };
 
 // POST
 users.createUser = (req, res) => {
     const userModel = new User();
-    const user = Object.assign(userModel, req.body);
-    user.save((err, doc) => {
-        if (err) {
-            res
-                .status(500)
-                .send(err);
-        }
-        res
-            .status(200)
-            .send(doc);
-    });
+    console.log(req, 'req in create user', res)
+    // const user = Object.assign(userModel, req.body);
+    // user.save((err, doc) => {
+    //     console.log(doc, 'docc')
+    //     if (err) {
+    //         res
+    //             .status(500)
+    //             .send(err);
+    //     }
+    //     res
+    //         .status(200)
+    //         .send(doc);
+    // });
 }
 
 // DELETE
