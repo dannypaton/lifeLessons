@@ -19,7 +19,7 @@ class LessonPost extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const lesson = Object.assign({}, this.state);
-        lesson.userId = 1
+        lesson.userId = 2
 
         fetch('/api/lessons', {
             method: 'POST',

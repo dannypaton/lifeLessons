@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import CreateUser from './components/Create-User'
 import UserCard from './components/User-Card'
 import LessonPost from './components/Lesson-Post'
 import LessonWrapper from './components/Lesson-Wrapper'
@@ -8,31 +9,44 @@ class App extends React.Component {
     constructor() {
         super()
         this.state = {
-            lessons: []
+            lessons: [],
+            currentUser: {}
         }
 
-        this.getLessons = this.getLessons.bind(this)
+        this.getAllLessons = this.getAllLessons.bind(this)
+        this.getUsersLessons = this.getUsersLessons.bind(this)
         this.createLesson = this.createLesson.bind(this)
     }
 
     componentDidMount() {
-        this.getLessons()
+        this.getAllLessons()
+        this.getCurrentUser()
     }
 
     createLesson(lesson) {
-        // console.log(lesson, 'test')
         const allLessons = this.state.lessons
         allLessons.push(lesson)
         this.setState({ lessons: allLessons })
     }
 
     getCurrentUser() {
-        fetch('/api/users')
-            .then(resp => console.log(resp, 'resp'))
+        fetch('/api/user')
+            .then(resp => resp.json())
+            .then(user => {
+                this.setState({ currentUser: user })
+            });
     }
 
-    getLessons() {
+    getAllLessons() {
         fetch('/api/lessons')
+            .then(resp => resp.json())
+            .then(lessons => {
+                this.setState({ lessons: lessons })
+            });
+    }
+
+    getUsersLessons() {
+        fetch(`/api/lessons/${2}`)
             .then(resp => resp.json())
             .then(lessons => {
                 this.setState({ lessons: lessons })
@@ -43,7 +57,10 @@ class App extends React.Component {
         return (
             <div>
                 <div>
-                    <UserCard />
+                    <UserCard user={ this.state.currentUser } />
+                </div>
+                <div>
+                    <CreateUser />
                 </div>
                 <div>
                     <LessonPost createLesson={this.createLesson} />

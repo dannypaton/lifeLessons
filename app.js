@@ -27,13 +27,14 @@ app.use(express.static('assets'))
 
 // Include your own logic here (so it has precedence over the wildcard
 // route below)
+app.get('/api/lessons/:id', lessons.getLessons)
 app.get('/api/lessons', lessons.getLessons)
 app.post('/api/lessons', lessons.postLesson)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)
 
-app.get('/api/users', users.getUsers)
-app.post('/api/users', users.createUser)
+app.get('/api/user', users.getUser)
+app.post('/api/user', users.createUser)
 
 // This route serves your index.html file (which
 // initializes React)

@@ -3,16 +3,18 @@ const lessons = {}
 
 // GET
 lessons.getLessons = (req, res, next) => {
+    if (req.params.id) {
+        Lesson.find({ userId: req.params.id }, (err, docs) => {
+            if (err) res.status(400).send(err)
+
+            res.status(200).send(docs)
+        })
+    }
+    
     Lesson.find(function (err, docs) {
-        if (err) {
-            res
-                .status(400)
-                .send(err)
-        } else {
-            res
-                .status(200)
-                .send(docs)
-        }
+        if (err) res.status(400).send(err)
+
+        res.status(200).send(docs)
     })
 }
 
@@ -21,15 +23,9 @@ lessons.postLesson = (req, res, next) => {
     const lessonModel = new Lesson()
     const lesson = Object.assign(lessonModel, req.body)
     lesson.save((err, doc) => {
-        if (err) {
-            res
-                .status(500)
-                .send(err)
-        }
-        console.log(doc)
-        res
-            .status(200)
-            .send(doc)
+        if (err) res.status(500).send(err)
+
+        res.status(200).send(doc)
     })
 }
 
