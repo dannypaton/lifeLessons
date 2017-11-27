@@ -3,19 +3,21 @@ const lessons = {}
 
 // GET
 lessons.getLessons = (req, res, next) => {
-    if (req.params.id) {
-        Lesson.find({ userId: req.params.id }, (err, docs) => {
-            if (err) res.status(400).send(err)
-
+    Lesson.find().populate('user').exec()
+        .then(docs => {
             res.status(200).send(docs)
-        })
-    }
-    
-    Lesson.find(function (err, docs) {
-        if (err) res.status(400).send(err)
+        }).catch(err => res.status(400).send(err))
+}
 
-        res.status(200).send(docs)
-    })
+
+// GET USERS LESSONS
+lessons.getUsersLessons = (req, res, next) => {
+    if (req.params.id) {
+        Lesson.find({ userId: req.params.id })
+            .then(lessons => {
+                res.status(200).send(lessons)
+            }).catch(err => res.status(400).send(err))
+    }
 }
 
 // POST

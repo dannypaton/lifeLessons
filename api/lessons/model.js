@@ -1,6 +1,7 @@
-'use strict';
+'use strict'
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+require('../users/model')
 
 const LessonSchema = new mongoose.Schema({
     userId: {
@@ -22,7 +23,11 @@ const LessonSchema = new mongoose.Schema({
 		required: true,
 		type: Date,
 		default: new Date()
-	}
-});
+	},
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+})
 
-module.exports = mongoose.model('Lesson', LessonSchema);
+module.exports = mongoose.model('Lesson', LessonSchema)

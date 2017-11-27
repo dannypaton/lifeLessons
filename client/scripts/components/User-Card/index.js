@@ -5,12 +5,10 @@ class UserCard extends React.Component {
 		super()
 	}
 
-
 	render() {
-		console.log(this.props.user, 'this')
 		return (
 			<div>
-				<h1>{ this.props.user && this.props.user.length ? this.props.user[0].username : null }</h1>
+				<h1>{ this.props.user ? this.props.user.username : null }</h1>
 			</div>
 		)
 	}

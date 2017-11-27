@@ -27,9 +27,9 @@ app.use(express.static('assets'))
 
 // Include your own logic here (so it has precedence over the wildcard
 // route below)
-app.get('/api/lessons/:id', lessons.getLessons)
 app.get('/api/lessons', lessons.getLessons)
 app.post('/api/lessons', lessons.postLesson)
+app.get('/api/user/:id/lessons', lessons.getUsersLessons)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)
 

@@ -30,7 +30,7 @@ class LessonPost extends React.Component {
         })
             .then(resp => resp.json())
             .then(lesson => {
-                this.props.createLesson(lesson)
+                this.props.updateGlobalLessonState(lesson)
                 this.setState({ message: '' })
             });
     }
