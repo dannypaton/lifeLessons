@@ -35,7 +35,7 @@ class App extends React.Component {
 			.then(resp => resp.json())
 			.then(user => {
 				// this.setState({ currentUser: user })
-				this.setState({ currentUser: user[0] })
+				this.setState({ currentUser: user[1] })
 			});
 	}
 

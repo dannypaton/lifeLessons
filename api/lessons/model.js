@@ -4,16 +4,6 @@ const mongoose = require('mongoose')
 require('../users/model')
 
 const LessonSchema = new mongoose.Schema({
-    userId: {
-    	required: true,
-    	type: Number,
-        default: 0
-    },
-    lessonId: {
-    	required: true,
-    	type: Number,
-        default: 0
-    },
     message: {
     	required: true,
     	type: String,
@@ -24,9 +14,10 @@ const LessonSchema = new mongoose.Schema({
 		type: Date,
 		default: new Date()
 	},
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     }
 })
 

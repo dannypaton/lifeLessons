@@ -16,25 +16,23 @@ class Profile extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.currentUser.userId)  {
-			this.getUsersLessons();
+		if (nextProps.currentUser._id)  {
+			this.getUsersLessons(nextProps.currentUser._id)
 		}
 	}
 
-	getUsersLessons() {
-		console.log(this.props);
-		// console.log(this.props.currentUser, 'inside the functions')
-		const id = this.props.currentUser.userId
-		lessonServices.getUsersLessons(id)
+	getUsersLessons(userID) {
+		if (!userID) return
+			
+		lessonServices.getUsersLessons(userID)
 			.then(resp => resp.json())
 			.then(lessons => {
-				console.log(lessons, 'LESSOSNFDKJFKDSJFKDSJ')
+				console.log(lessons, 'LESSOS')
 				this.setState({ usersLessons: lessons })
-			});
+			})
 	}
 
 	render() {
-		console.log(this, 'inside profile component')
 		return (
 			<div>
 				<div>
