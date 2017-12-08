@@ -1,11 +1,10 @@
 import React from 'react'
-import Field from './Field'
+import Field from '../Field'
 
 class UserLogin extends React.Component {
     constructor() {
         super()
         this.state = {
-            username: '',
             email: '',
             password: '',
         }
@@ -17,8 +16,6 @@ class UserLogin extends React.Component {
     handleSubmit(e) {
         e.preventDefault()
         const user = Object.assign({}, this.state)
-        // 1. Collect all of the user data from the state
-        // 2. POST it to the back end to check user's credentials.
         fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -37,7 +34,7 @@ class UserLogin extends React.Component {
             }
         })
         .then((json) => {
-            this.props.refresh()
+            this.props.updateCurrentUserState(json)
         })
 
     }
@@ -53,13 +50,6 @@ class UserLogin extends React.Component {
             <div>
                 <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <Field
-                        type='username'
-                        name='username'
-                        label='Enter your email: '
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
                     <Field
                         type='email'
                         name='email'

@@ -8,10 +8,14 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		type: String
 	},
+	name: {
+		required: true,
+		type: String
+	},
 	email: {
 		required: true,
 		type: String
-	}
+	},
 	dateCreated: {
 		required: true,
 		type: Date
@@ -20,7 +24,11 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		type: Boolean,
 		default: true
-
+	},
+	private: {
+		required: true,
+		type: Boolean,
+		default: false
 	}
 })
 

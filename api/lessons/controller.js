@@ -5,7 +5,8 @@ const lessons = {}
 lessons.getLessons = (req, res, next) => {
     Lesson.find().populate('user').exec()
         .then(docs => {
-            res.status(200).send(docs)
+            const lessons = docs.filter(doc => console.log(doc, 'docccccc'))
+            res.status(200).send(lessons)
         }).catch(err => res.status(400).send(err))
 }
 

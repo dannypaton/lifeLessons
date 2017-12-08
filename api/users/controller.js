@@ -17,7 +17,8 @@ users.createUser = (req, res) => {
 	const user = Object.assign(userModel, req.body);
 
 	user.dateCreated = new Date()
-	user.userId = 2
+	user.active = true
+	user.private = false
 
 	user.save((err, doc) => {
 		if (err) {

@@ -28,7 +28,6 @@ app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }))
 app.use(passport.initialize())
 app.use(passport.session())
 
-
 app.use(bodyParser.json())
 
 // This serves all files placed in the /public
@@ -39,16 +38,47 @@ app.use(express.static('public'))
 // assets that you want to manually include)
 app.use(express.static('assets'))
 
-// Include your own logic here (so it has precedence over the wildcard
-// route below)
+// LESSONS
 app.get('/api/lessons', lessons.getLessons)
 app.post('/api/lessons', lessons.postLesson)
-app.get('/api/user/:id/lessons', lessons.getUsersLessons)
+app.get('/api/user/:id/lessons', requireLogin, lessons.getUsersLessons)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)
 
+// USER
 app.get('/api/user', users.getUser)
 app.post('/api/user', users.createUser)
+
+// LOGIN
+app.post('/api/login', passport.authenticate('local'), (req, res) => {
+  res.status(401).send(req.user)
+})
+
+app.post('/api/signup', (req, res, next) => {
+  const newUser = new User({
+    username: req.body.username,
+    name: req.body.name,
+    email: req.body.email,
+    date: new Date(),
+    active: true
+  }) 
+
+  User.register(newUser, req.body.password, (err, user) => {
+    if (err) {
+      res.status(500).send(err)
+    } else {
+      req.logIn(user, (err) => {
+        res.send(user)
+      })
+    }
+  })
+})
+
+app.get('/api/logout', (req, res) => {
+  req.logout()
+  res.json('User logged out.')
+})
+
 
 // This route serves your index.html file (which
 // initializes React)
