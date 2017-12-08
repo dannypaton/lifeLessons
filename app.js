@@ -5,6 +5,11 @@ const path = require('path')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+// These are the ones for login
+const passport = require('passport')
+const session = require('express-session')
+const requireLogin = require('./require_login')
+
 // Lessons
 const Lesson = require('./api/lessons/model')
 const lessons = require('./api/lessons/controller')
@@ -14,6 +19,15 @@ const User = require('./api/users/model')
 const users = require('./api/users/controller')
 
 mongoose.connect('mongodb://localhost/lifeLessons')
+
+passport.use(User.createStrategy())
+app.use(bodyParser.json())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }))
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 app.use(bodyParser.json())
 

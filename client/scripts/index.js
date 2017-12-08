@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import Home from './components/Home'
 import Profile from './components/Profile'
-import userServices from './services/userServices';
-import lessonServices from './services/lessonServices';
+import userServices from './services/userServices'
+import lessonServices from './services/lessonServices'
+import LoginUser from './components/LoginUser'
 
 class App extends React.Component {
 	constructor() {
@@ -15,6 +16,7 @@ class App extends React.Component {
 			currentUser: {}
 		}
 
+		this.logout = this.logout.bind(this)
 		this.getAllLessons = this.getAllLessons.bind(this)
 		this.updateGlobalLessonState = this.updateGlobalLessonState.bind(this)
 	}
@@ -30,12 +32,25 @@ class App extends React.Component {
 		this.setState({ lessons: allLessons })
 	}
 
+	logout() {
+	    fetch('/api/logout', {
+	        method: 'GET',
+	        credentials: 'include',
+	    })
+	    .then(() => {
+	        this.setState({
+	            user: null,
+	        })
+	    })
+	    
+	}
+
 	getCurrentUser() {
 		userServices.getCurrentUser()		
 			.then(resp => resp.json())
 			.then(user => {
 				// this.setState({ currentUser: user })
-				this.setState({ currentUser: user[1] })
+				this.setState({ currentUser: user[0] })
 			});
 	}
 
@@ -51,6 +66,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
+					{ this.state.user ? <button onClick={this.logout}>Logout</button> : ''}
 					<Route exact path="/" render={(props) => <Home {...props} lessons={this.state.lessons} updateGlobalLessonState={this.updateGlobalLessonState} currentUser={this.state.currentUser} />} />
 					<Route path="/profile" render={(props) => <Profile {...props} updateGlobalLessonState={this.updateGlobalLessonState} currentUser={this.state.currentUser} />} />
 				</div>

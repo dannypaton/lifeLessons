@@ -6,13 +6,11 @@ require('../users/model')
 const LessonSchema = new mongoose.Schema({
     message: {
     	required: true,
-    	type: String,
-        default: ''
+    	type: String
     },
     dateCreated: {
 		required: true,
-		type: Date,
-		default: new Date()
+		type: Date
 	},
     userId: {
         type: mongoose.Schema.Types.ObjectId,

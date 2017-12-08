@@ -1,27 +1,20 @@
 'use strict'
 
 const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new mongoose.Schema({
-	userId: {
-		required: true,
-		type: Number,
-		default: 0
-	},
 	username: {
 		required: true,
-		type: String,
-		default: ''
+		type: String
 	},
-	password: {
+	email: {
 		required: true,
-		type: String,
-		default: ''
-	},
+		type: String
+	}
 	dateCreated: {
 		required: true,
-		type: Date,
-		default: new Date()
+		type: Date
 	},
 	active: {
 		required: true,
@@ -30,5 +23,7 @@ const UserSchema = new mongoose.Schema({
 
 	}
 })
+
+UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
 module.exports = mongoose.model('User', UserSchema)
