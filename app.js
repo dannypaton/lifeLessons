@@ -40,7 +40,7 @@ app.use(express.static('assets'))
 
 // LESSONS
 app.get('/api/lessons', lessons.getLessons)
-app.post('/api/lessons', lessons.postLesson)
+app.post('/api/lessons', requireLogin, lessons.postLesson)
 app.get('/api/user/:id/lessons', requireLogin, lessons.getUsersLessons)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)
@@ -56,26 +56,6 @@ app.post('/api/login', passport.authenticate('local'), (req, res) => {
   } else {
     res.send(req.user);
   }
-})
-
-app.post('/api/signup', (req, res, next) => {
-  const newUser = new User({
-    username: req.body.username,
-    name: req.body.name,
-    email: req.body.email,
-    dateCreated: new Date(),
-    active: true
-  }) 
-
-  User.register(newUser, req.body.password, (err, user) => {
-    if (err) {
-      res.status(500).send(err)
-    } else {
-      req.logIn(user, (err) => {
-        res.send(user)
-      })
-    }
-  })
 })
 
 app.get('/api/logout', (req, res) => {

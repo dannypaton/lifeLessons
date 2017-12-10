@@ -4,8 +4,14 @@ lessonServices.getAllLessons = () => {
 	return fetch('/api/lessons');
 }			
 
-lessonServices.getUsersLessons = (userId) => {
-	return fetch(`/api/user/${userId}/lessons`)
+lessonServices.get = (userId) => {
+	return fetch(`/api/user/${userId}/lessons`, {
+		method: 'GET',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
 }
 
 lessonServices.postLesson = (lesson) => {

@@ -20,7 +20,7 @@ class UserCreate extends React.Component {
         // 1. Collect all of the user data from the state
         const user = Object.assign({}, this.state);
         // 2. POST it to the back end to create a new user.
-        fetch('/api/signup', {
+        fetch('/api/user', {
             method: 'POST',
             credentials: 'include',
             headers: {

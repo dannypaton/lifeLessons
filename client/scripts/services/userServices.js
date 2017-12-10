@@ -1,6 +1,6 @@
 const userServices = {};
 
-userServices.getCurrentUser = () => {
+userServices.get = () => {
 	return fetch('/api/user', {
 		method: 'GET',
 		credentials: 'include',

@@ -3,28 +3,30 @@ const lessons = {};
 
 // GET
 lessons.getLessons = (req, res, next) => {
-    // Lesson.find().populate('user').exec()
-    //     .then(docs => {
-    //         const lessons = docs.filter(doc => console.log(doc, 'docccccc'))
-    //         res.status(200).send(lessons)
-    //     }).catch(err => res.status(400).send(err))
+    Lesson.find().populate('user').exec()
+        .then(docs => {
+            // const lessons = docs.filter(doc => doc.active)
+            res.status(200).send(docs)
+        }).catch(err => res.status(500).send(err))
 }
 
 
 // GET USERS LESSONS
 lessons.getUsersLessons = (req, res, next) => {
-    if (req.params.id) {
-        Lesson.find({ userId: req.params.id })
-            .then(lessons => {
-                res.status(200).send(lessons)
-            }).catch(err => res.status(400).send(err))
-    }
+    console.log(req.user._id);
+    Lesson.find({ userId: req.user._id })
+        .then(lessons => {
+            res.status(200).send(lessons)
+        })
+        .catch(err => res.status(500).send({ error: 'No lessons for this user.' }))
 }
 
 // POST
 lessons.postLesson = (req, res, next) => {
     const lessonModel = new Lesson()
     const lesson = Object.assign(lessonModel, req.body)
+    lesson.dateCreated = new Date()
+
     lesson.save((err, doc) => {
         if (err) res.status(500).send(err)
 

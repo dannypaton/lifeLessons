@@ -16,15 +16,20 @@ class Profile extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps, 'next props')
 		if (nextProps.currentUser._id)  {
 			this.getUsersLessons(nextProps.currentUser._id)
 		}
 	}
 
+	componentDidMount() {
+		this.getUsersLessons(this.props.currentUser._id)
+	}
+
 	getUsersLessons(userID) {
 		if (!userID) return
-			
-		lessonServices.getUsersLessons(userID)
+		console.log('useridjkfjdskjfkd')
+		lessonServices.get(userID)
 			.then(resp => resp.json())
 			.then(lessons => {
 				// console.log(lessons, 'LESSOS')

@@ -4,39 +4,33 @@ const users = {};
 // GET
 users.getUser = (req, res, next) => {
 	if (req.user) {
-		res.send(req.user);
+		res.status(200).send(req.user);
 	} else {
-		res.send({
+		res.status(500).send({
 			message: "No user",
 		});
 	}
-	// User.find(function (err, docs) {
-	// 	if (err) {
-	// 		res.status(400).send(err)
-	// 	}
-	// 	console.log(docs, 'docs')
-	// 	res.status(200).send(docs)
-	// });
 };
 
 // POST
 users.createUser = (req, res) => {
-	const userModel = new User();
-	const user = Object.assign(userModel, req.body);
+	const newUser = new User({
+	  username: req.body.username,
+	  name: req.body.name,
+	  email: req.body.email,
+	  dateCreated: new Date(),
+	  active: true
+	}) 
 
-	console.log("create user");
-
-	user.dateCreated = "1234";
-	user.active = true
-	user.private = false
-
-
-	user.save((err, doc) => {
-		if (err) {
-			res.status(500).send(err);
-		}
-		res.status(200).send(doc);
-	});
+	User.register(newUser, req.body.password, (err, user) => {
+	  if (err) {
+	    res.status(500).send(err)
+	  } else {
+	    req.logIn(user, (err) => {
+	      res.status(200).send(user)
+	    })
+	  }
+	})
 }
 
 // DELETE

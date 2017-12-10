@@ -52,10 +52,9 @@ class App extends React.Component {
 	}
 
 	getCurrentUser() {
-		userServices.getCurrentUser()		
+		userServices.get()		
 			.then(resp => resp.json())
 			.then(user => {
-				console.log(user);
 				if (user._id) {
 					this.setState({ currentUser: user })
 				} else {
