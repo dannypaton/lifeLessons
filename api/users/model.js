@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	dateCreated: {
 		required: true,
-		type: Date
+		type: String
 	},
 	active: {
 		required: true,
@@ -29,6 +29,11 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		type: Boolean,
 		default: false
+	},
+	role: {
+		type: String,
+		enum: ['user', 'author', 'admin', 'superAdmin'],
+		default: 'user'
 	}
 })
 

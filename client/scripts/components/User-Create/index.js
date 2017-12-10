@@ -30,6 +30,7 @@ class UserCreate extends React.Component {
         })
         .then((res) => res.json())
         .then((json) => {
+            // console.log(this.props, 'this.props');
             this.props.updateCurrentUserState(json)
         });
     }

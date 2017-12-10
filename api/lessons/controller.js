@@ -1,13 +1,13 @@
 const Lesson = require('./model.js')
-const lessons = {}
+const lessons = {};
 
 // GET
 lessons.getLessons = (req, res, next) => {
-    Lesson.find().populate('user').exec()
-        .then(docs => {
-            const lessons = docs.filter(doc => console.log(doc, 'docccccc'))
-            res.status(200).send(lessons)
-        }).catch(err => res.status(400).send(err))
+    // Lesson.find().populate('user').exec()
+    //     .then(docs => {
+    //         const lessons = docs.filter(doc => console.log(doc, 'docccccc'))
+    //         res.status(200).send(lessons)
+    //     }).catch(err => res.status(400).send(err))
 }
 
 

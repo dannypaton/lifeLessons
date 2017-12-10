@@ -3,12 +3,20 @@ const users = {};
 
 // GET
 users.getUser = (req, res, next) => {
-	User.find(function (err, docs) {
-		if (err) {
-			res.status(400).send(err)
-		}
-		res.status(200).send(docs)
-	});
+	if (req.user) {
+		res.send(req.user);
+	} else {
+		res.send({
+			message: "No user",
+		});
+	}
+	// User.find(function (err, docs) {
+	// 	if (err) {
+	// 		res.status(400).send(err)
+	// 	}
+	// 	console.log(docs, 'docs')
+	// 	res.status(200).send(docs)
+	// });
 };
 
 // POST
@@ -16,9 +24,12 @@ users.createUser = (req, res) => {
 	const userModel = new User();
 	const user = Object.assign(userModel, req.body);
 
-	user.dateCreated = new Date()
+	console.log("create user");
+
+	user.dateCreated = "1234";
 	user.active = true
 	user.private = false
+
 
 	user.save((err, doc) => {
 		if (err) {

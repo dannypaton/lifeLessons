@@ -33,7 +33,6 @@ class CreateUser extends React.Component {
 	    })
 	        .then(resp => resp.json())
 	        .then(user => {
-	        	console.log(user, 'user')
 	            // this.setState({ username: '' })
 	        });
 	}

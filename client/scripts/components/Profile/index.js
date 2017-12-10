@@ -27,7 +27,7 @@ class Profile extends React.Component {
 		lessonServices.getUsersLessons(userID)
 			.then(resp => resp.json())
 			.then(lessons => {
-				console.log(lessons, 'LESSOS')
+				// console.log(lessons, 'LESSOS')
 				this.setState({ usersLessons: lessons })
 			})
 	}

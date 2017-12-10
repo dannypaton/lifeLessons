@@ -34,6 +34,7 @@ class UserLogin extends React.Component {
             }
         })
         .then((json) => {
+            // console.log('res.json', json);
             this.props.updateCurrentUserState(json)
         })
 

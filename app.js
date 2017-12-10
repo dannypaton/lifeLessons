@@ -51,7 +51,11 @@ app.post('/api/user', users.createUser)
 
 // LOGIN
 app.post('/api/login', passport.authenticate('local'), (req, res) => {
-  res.status(401).send(req.user)
+  if (!req.user) {
+    res.status(401).send({ message: "No user "});
+  } else {
+    res.send(req.user);
+  }
 })
 
 app.post('/api/signup', (req, res, next) => {
@@ -59,7 +63,7 @@ app.post('/api/signup', (req, res, next) => {
     username: req.body.username,
     name: req.body.name,
     email: req.body.email,
-    date: new Date(),
+    dateCreated: new Date(),
     active: true
   }) 
 

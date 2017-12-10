@@ -21,7 +21,7 @@ class LessonPost extends React.Component {
         e.preventDefault();
         const lesson = Object.assign({}, this.state);
         lesson.userId = '5a19a302fb58951364035fb8'
-        console.log(lesson, 'lesson in handle submit')
+        // console.log(lesson, 'lesson in handle submit')
 
         lessonServices.postLesson(lesson)
             .then(resp => resp.json())

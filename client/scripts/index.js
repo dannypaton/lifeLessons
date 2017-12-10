@@ -14,7 +14,7 @@ class App extends React.Component {
 		super()
 		this.state = {
 			lessons: [],
-			currentUser: {}
+			currentUser: null
 		}
 
 		this.logout = this.logout.bind(this)
@@ -55,8 +55,12 @@ class App extends React.Component {
 		userServices.getCurrentUser()		
 			.then(resp => resp.json())
 			.then(user => {
-				// this.setState({ currentUser: user })
-				this.setState({ currentUser: user[0] })
+				console.log(user);
+				if (user._id) {
+					this.setState({ currentUser: user })
+				} else {
+					this.setState({ currentUser: null })
+				}
 			});
 	}
 
