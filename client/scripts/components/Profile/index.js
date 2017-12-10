@@ -44,7 +44,7 @@ class Profile extends React.Component {
 				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>
-			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} />
+			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} user={this.props.currentUser} />
 			        <LessonWrapper lessons={this.state.usersLessons} />
 			    </div>
 			</div>

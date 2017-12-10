@@ -20,10 +20,10 @@ class LessonPost extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const lesson = Object.assign({}, this.state);
-        lesson.userId = '5a19a302fb58951364035fb8'
-        // console.log(lesson, 'lesson in handle submit')
+        lesson.userId = this.props.user._id
 
         lessonServices.postLesson(lesson)
+            .then(res => console.log(res, 'res in response'))
             .then(resp => resp.json())
             .then(lesson => {
                 this.props.updateGlobalLessonState(lesson)
@@ -32,6 +32,7 @@ class LessonPost extends React.Component {
     }
 
     render() {
+            console.log(this.props, 'inside lesson post!')
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
