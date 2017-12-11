@@ -40,7 +40,8 @@ app.use(express.static('assets'))
 
 // LESSONS
 app.get('/api/lessons', lessons.getLessons)
-app.post('/api/lessons', requireLogin, lessons.postLesson)
+// app.post('/api/lessons', requireLogin, lessons.postLesson)
+app.post('/api/lessons', lessons.postLesson)
 app.get('/api/user/:id/lessons', requireLogin, lessons.getUsersLessons)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)

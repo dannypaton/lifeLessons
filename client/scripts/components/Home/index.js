@@ -23,13 +23,13 @@ class Home extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className='main'>
 				<div>
 					<button onClick={this.logout}>Logout</button>
 				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>
-			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} />
+			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} user={this.props.currentUser} />
 			        <LessonWrapper lessons={this.props.lessons} />
 			    </div>
 			</div>

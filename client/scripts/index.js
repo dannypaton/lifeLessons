@@ -74,7 +74,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router>
-				<div>
+				<div className='main'>
 					{ !this.state.currentUser ?
 						<div>
 							<Route exact path="/" render={(props) => <LoginWrapper {...props} updateCurrentUserState={this.updateCurrentUserState} currentUser={this.state.currentUser} />} /> 

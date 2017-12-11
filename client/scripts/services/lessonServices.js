@@ -15,6 +15,7 @@ lessonServices.get = (userId) => {
 }
 
 lessonServices.postLesson = (lesson) => {
+	// console.log(lesson, 'less inside lessonServices')
 	return fetch('/api/lessons', {
 	    method: 'POST',
 	    body: JSON.stringify(lesson),
