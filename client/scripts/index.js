@@ -38,17 +38,18 @@ class App extends React.Component {
 		this.setState({ currentUser: user })
 	}
 
-	logout() {
+	logout(e, props) {
 	    fetch('/api/logout', {
 	        method: 'GET',
 	        credentials: 'include',
 	    })
 	    .then(() => {
+	    	console.log(props);
+	    	props.history.push('/')
 	        this.setState({
-	            user: null,
+	            currentUser: null,
 	        })
 	    })
-	    
 	}
 
 	getCurrentUser() {
@@ -84,12 +85,23 @@ class App extends React.Component {
 							<Route 
 								exact 
 								path="/" 
-								render={(props) => <Home {...props} lessons={this.state.lessons}
-								updateGlobalLessonState={this.updateGlobalLessonState} 
-								updateCurrentUserState={this.updateCurrentUserState} 
-								currentUser={this.state.currentUser} />} 
+								render={(props) => 
+									<Home {...props} 
+										lessons={this.state.lessons}
+										updateGlobalLessonState={this.updateGlobalLessonState} 
+										updateCurrentUserState={this.updateCurrentUserState} 
+										currentUser={this.state.currentUser} 
+										logout={this.logout}
+									/>} 
+									
 							/>
-							<Route path="/profile" render={(props) => <Profile {...props} updateGlobalLessonState={this.updateGlobalLessonState} currentUser={this.state.currentUser} />} />
+							<Route path="/profile" render={(props) => 
+								<Profile {...props} 
+									updateGlobalLessonState={this.updateGlobalLessonState} 
+									currentUser={this.state.currentUser} 
+									logout={this.logout} 
+								/>} 
+							/>
 						</div>
 					}
 				</div>

@@ -4,7 +4,6 @@ import UserCreate from '../User-Create'
 
 class LoginWrapper extends React.Component {
 	render() {
-		// console.log(this.props, 'insie login wrapper')
 		return (
 			<div>
 				<div>

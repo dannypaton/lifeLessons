@@ -31,7 +31,6 @@ class LessonPost extends React.Component {
     }
 
     render() {
-            // console.log(this.props, 'inside lesson post!')
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

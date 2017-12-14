@@ -12,11 +12,11 @@ class Profile extends React.Component {
 			usersLessons: []
 		}
 
+		this.editUser = this.editUser.bind(this)
 		this.getUsersLessons = this.getUsersLessons.bind(this)
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps, 'next props')
 		if (nextProps.currentUser._id)  {
 			this.getUsersLessons(nextProps.currentUser._id)
 		}
@@ -26,13 +26,28 @@ class Profile extends React.Component {
 		this.getUsersLessons(this.props.currentUser._id)
 	}
 
+	editUser() {
+		let updatedUser = Object.assign({}, this.props.currentUser)
+		updatedUser.username = 'MYUPDATEDNAME'
+
+		console.log(updatedUser, 'updateduser')
+		fetch(`/api/user/${this.props.currentUser._id}`, {
+			method: 'PATCH',
+			credentials: 'include',
+			'Content-Type': 'application/json',
+			body: JSON.stringify(updatedUser),
+		})
+		.then(resp => resp.json())
+		.then(user => {
+			console.log(user, 'the updated user')
+		})
+	}
+
 	getUsersLessons(userID) {
 		if (!userID) return
-		console.log('useridjkfjdskjfkd')
 		lessonServices.get(userID)
 			.then(resp => resp.json())
 			.then(lessons => {
-				// console.log(lessons, 'LESSOS')
 				this.setState({ usersLessons: lessons })
 			})
 	}
@@ -41,6 +56,8 @@ class Profile extends React.Component {
 		return (
 			<div>
 				<div>
+					<button onClick={this.editUser}>Edit</button>
+					<button onClick={(e) => this.props.logout(e, this.props)}>Logout</button>
 				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>

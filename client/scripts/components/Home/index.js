@@ -4,28 +4,11 @@ import LessonPost from '../Lesson-Post'
 import LessonWrapper from '../Lesson-Wrapper'
 
 class Home extends React.Component {
-	constructor () {
-		super()
-
-		this.logout = this.logout.bind(this)
-	}
-
-	logout() {
-	    fetch('/api/logout', {
-	        method: 'GET',
-	        credentials: 'include',
-	    })
-	    .then(() => {
-	        this.props.updateCurrentUserState()
-	    })
-	    
-	}
-
 	render() {
 		return (
 			<div className='main'>
 				<div>
-					<button onClick={this.logout}>Logout</button>
+					<button onClick={this.props.logout}>Logout</button>
 				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>

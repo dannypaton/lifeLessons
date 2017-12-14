@@ -1,16 +1,16 @@
-const User = require('./model.js');
-const users = {};
+const User = require('./model.js')
+const users = {}
 
 // GET
 users.getUser = (req, res, next) => {
 	if (req.user) {
-		res.status(200).send(req.user);
+		res.status(200).send(req.user)
 	} else {
 		res.status(500).send({
 			message: "No user",
-		});
+		})
 	}
-};
+}
 
 // POST
 users.createUser = (req, res) => {
@@ -35,41 +35,29 @@ users.createUser = (req, res) => {
 
 // DELETE
 users.deleteUser = (req, res) => {
-	const userId = req.params.id;
+	const userId = req.params.id
 	user.remove({ _id: userId }, (err, doc) => {
 	    if (err) {
-	        res.status(500).send(err);
+	        res.status(500).send(err)
 	    } else {
-	        res.status(200).json({ message: 'Successfully Deleted!' });
+	        res.status(200).json({ message: 'Successfully Deleted!' })
 	    }
-	});
+	})
 }
 
 //UPDATE
 users.updateUser = (req, res) => {
-	// const model = req.body;
-	// console.log('body:', req.body);
-	// const movie = Movie.findById(req.params.id, (err, doc) => {
-	//     if (err) {
-	//         res
-	//             .status(500)
-	//             .send(err);
-	//     } else {
-	//         delete req.body._id;
-	//         const updatedMovie = Object.assign(doc, model);
-	//         updatedMovie.save((err, doc) => {
-	//             if (err) {
-	//                 res
-	//                     .status(500)
-	//                     .send(err);
-	//             } else {
-	//                 res
-	//                     .status(200)
-	//                     .send(doc);
-	//             }
-	//         });
-	//     }
-	// });
+	console.log(req.body, 'body')
+
+	User.findOne({ _id: req.params.id })
+		.then(doc => {
+			if (doc) {
+				doc = Object.assign(doc, req.body)
+				doc.save().then(updatedDoc => {
+					res.send(updatedDoc)
+				});
+			}
+		})
 }
 
-module.exports = users;
+module.exports = users

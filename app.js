@@ -40,8 +40,8 @@ app.use(express.static('assets'))
 
 // LESSONS
 app.get('/api/lessons', lessons.getLessons)
-// app.post('/api/lessons', requireLogin, lessons.postLesson)
-app.post('/api/lessons', lessons.postLesson)
+app.post('/api/lessons', requireLogin, lessons.postLesson)
+// app.post('/api/lessons', lessons.postLesson)
 app.get('/api/user/:id/lessons', requireLogin, lessons.getUsersLessons)
 // app.delete('/api/lessons/:id', movies.deleteMovie)
 // app.put('/api/lessons/:id', movies.updateMovie)
@@ -49,6 +49,7 @@ app.get('/api/user/:id/lessons', requireLogin, lessons.getUsersLessons)
 // USER
 app.get('/api/user', users.getUser)
 app.post('/api/user', users.createUser)
+app.patch('/api/user/:id', users.updateUser)
 
 // LOGIN
 app.post('/api/login', passport.authenticate('local'), (req, res) => {

@@ -13,7 +13,6 @@ lessons.getLessons = (req, res, next) => {
 
 // GET USERS LESSONS
 lessons.getUsersLessons = (req, res, next) => {
-    console.log(req.user._id);
     Lesson.find({ userId: req.user._id })
         .then(lessons => {
             res.status(200).send(lessons)
