@@ -32,10 +32,10 @@ class LessonPost extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="form-mainwrap">
+                <form className="form-wrap" onSubmit={this.handleSubmit}>
                     <div className="form-row">
-                        <textarea onChange={this.handleChange} name="message" type="text" placeholder="Lesson..." value={this.state.message} />
+                        <textarea onChange={this.handleChange} name="message" type="text" placeholder="Post a lesson here!" value={this.state.message} />
                     </div>
                     <div className="form-row">
                         <button>Post Lesson</button>

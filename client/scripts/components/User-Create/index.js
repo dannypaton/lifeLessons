@@ -43,8 +43,8 @@ class UserCreate extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>Sign Up!</h2>
+            <div className="form-wrap">
+                <h2>Sign Up</h2>
                 <form onSubmit={this.handleSubmit}>
                     <Field
                         type="text"

@@ -8,7 +8,7 @@ class UserCard extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>{ this.props.user ? this.props.user.username : null }</h1>
+				<h1>Welcome, { this.props.user ? this.props.user.username : null }!</h1>
 			</div>
 		)
 	}

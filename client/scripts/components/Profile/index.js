@@ -54,11 +54,11 @@ class Profile extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div>
+			<div className="main">
+				<div className="user">
+					<UserCard user={this.props.currentUser} className="currentUser" />
 					<button onClick={this.editUser}>Edit</button>
 					<button onClick={(e) => this.props.logout(e, this.props)}>Logout</button>
-				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>
 			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} user={this.props.currentUser} />

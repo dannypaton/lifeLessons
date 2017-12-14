@@ -6,10 +6,10 @@ import LessonWrapper from '../Lesson-Wrapper'
 class Home extends React.Component {
 	render() {
 		return (
-			<div className='main'>
-				<div>
+			<div className="main">
+				<div className="user">
+				    <UserCard user={ this.props.currentUser } className="currentUser" />
 					<button onClick={this.props.logout}>Logout</button>
-				    <UserCard user={ this.props.currentUser } />
 				</div>
 			    <div>
 			        <LessonPost updateGlobalLessonState={this.props.updateGlobalLessonState} user={this.props.currentUser} />
