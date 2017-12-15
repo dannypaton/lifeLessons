@@ -1,7 +1,7 @@
 const Lesson = require('./model.js')
 const lessons = {};
 
-// GET
+// get all lessons
 lessons.getLessons = (req, res, next) => {
     Lesson.find().populate('user').exec()
         .then(docs => {
@@ -11,7 +11,7 @@ lessons.getLessons = (req, res, next) => {
 }
 
 
-// GET USERS LESSONS
+// get current users lessons
 lessons.getUsersLessons = (req, res, next) => {
     Lesson.find({ userId: req.user._id })
         .then(lessons => {
@@ -20,7 +20,7 @@ lessons.getUsersLessons = (req, res, next) => {
         .catch(err => res.status(500).send({ error: 'No lessons for this user.' }))
 }
 
-// POST
+// post a lesson
 lessons.postLesson = (req, res, next) => {
     const lessonModel = new Lesson()
     const lesson = Object.assign(lessonModel, req.body)
@@ -52,7 +52,6 @@ lessons.deleteLesson = (req, res) => {
 //UPDATE
 lessons.updateLesson = (req, res) => {
     // const model = req.body
-    // console.log('body:', req.body)
     // const movie = Movie.findById(req.params.id, (err, doc) => {
     //     if (err) {
     //         res

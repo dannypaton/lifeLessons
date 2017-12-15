@@ -16,124 +16,141 @@ img {
     display: block;
 }
 
+.navWrapper {
+    background: #333333;
+    color: white;
+    padding: 20px;
+
+    a {
+        color: white;
+    }
+}
+
 // new
 
-  @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
-  * {
-      margin: 0;
-      padding: 0;
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+a:hover {
+    color: #4FDA8C;
+}
+input, button {
+    font: 16px/26px "Raleway", sans-serif;
+}
+body {
+    color: #666;
+    background-color: #f1f2f2;
+    font: 16px/26px "Raleway", sans-serif;
   }
-  a {
-      color: #666;
-      text-decoration: none;
-  }
-  a:hover {
-      color: #4FDA8C;
-  }
-  input, button {
-      font: 16px/26px "Raleway", sans-serif;
-  }
-  body {
-      color: #666;
-      background-color: #f1f2f2;
-      font: 16px/26px "Raleway", sans-serif;
-    }
-    .main {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-  }
-  .form-wrap, .LessonWrapper {
-      background-color: #fff;
-      width: 600px;
-      padding: 15px 15px 5px 15px;
-      margin: 3em 3em 3em 0em;
-      box-shadow: 0px 1px 8px #BEBEBE;
-      -webkit-box-shadow: 0px 1px 8px #BEBEBE;
-      -moz-box-shadow: 0px 1px 8px #BEBEBE;
-  }
-  .form-mainwrap {
+  .main {
+      display: flex;
+      justify-content: center;
       width: 100%;
-  }
-  .LessonWrapper {
-    h2 {
-        padding-left: 10px;
-        padding: 10px;
-    }
-  }
-  .user {
-      background-color: #fff;
-      width: 300px;
-      display: inline-table;
-      padding: 15px;
-      margin: 3em;
-      box-shadow: 0px 1px 8px #BEBEBE;
-      -webkit-box-shadow: 0px 1px 8px #BEBEBE;
-      -moz-box-shadow: 0px 1px 8px #BEBEBE;
-      h1 {
-          font-size: 16px;
-          margin-top: 0;
-          text-align: center;
-      }
-  }
-  .form-wrap h2 {
+}
+.form-wrap, .LessonWrapper {
+    background-color: #fff;
+    width: 600px;
+    padding: 15px 15px 5px 15px;
+    margin: 3em 3em 3em 0em;
+    box-shadow: 0px 1px 8px #BEBEBE;
+    -webkit-box-shadow: 0px 1px 8px #BEBEBE;
+    -moz-box-shadow: 0px 1px 8px #BEBEBE;
+}
+.form-mainwrap {
+    width: 100%;
+}
+.LessonWrapper {
+  h2 {
       padding-left: 10px;
+      padding: 10px;
+  }
+}
+.user {
+    background-color: #fff;
+    width: 300px;
+    display: inline-table;
+    padding: 15px;
+    margin: 3em;
+    box-shadow: 0px 1px 8px #BEBEBE;
+    -webkit-box-shadow: 0px 1px 8px #BEBEBE;
+    -moz-box-shadow: 0px 1px 8px #BEBEBE;
+    h1 {
+        font-size: 16px;
+        margin-top: 0;
+        text-align: center;
     }
-    .form-wrap form {
-        padding: 10px;
-    }
-    .form-wrap form .field-input, .form-row textarea {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        color: inherit;
-        font-family: inherit;
-        padding: 10px;
-        border: 1px solid #CFCFCF;
-        outline: 0;
-        display: inline-block;
-        margin: 0 0 .8em 0;
-        padding-right: 2em;
-        width: 100%;
-    }
-    .form-row textarea {
-        padding: 1em;
-        width:100%;
-        height:100%;
-        border: 1px solid lightgrey; 
-        white-space:pre-wrap;
-        word-wrap: break-word;
-        line-height: 1.25em;
-        resize: vertical;
-        outline: none;
-    }
-    .form-wrap form .field {
-        margin: 0 auto;
-    }
-    .form-wrap form button, .form-row button, .user button {
-        width: 100%;
-        padding: 10px;
-        background-color: #6d466b;
-        border: none;
-        color: #fff;
-        text-transform: uppercase;
-        cursor: pointer;
-        margin: 5px auto;
-    }
-    .form-row button {
-        margin-bottom: 15px;
-    }
-    .form-wrap form button:hover, .form-row button:hover {
-        background-color: #b49fcc;
-    }
-    section.lessonView {
-        border-bottom: 1px solid lightgray;
-        padding: 10px;
-    }
-    section.lessonView:last-of-type {
-        border-bottom: none;
-    }
+}
+.form-wrap h2 {
+  padding-left: 10px;
+}
+
+.form-wrap form {
+    padding: 10px;
+}
+.form-wrap form .field-input, .form-row textarea {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    padding: 10px;
+    border: 1px solid #CFCFCF;
+    outline: 0;
+    display: inline-block;
+    margin: 0 0 .8em 0;
+    padding-right: 2em;
+    width: 100%;
+}
+.form-row textarea {
+    padding: 1em;
+    width:100%;
+    height:100%;
+    border: 1px solid lightgrey; 
+    white-space:pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.25em;
+    resize: vertical;
+    outline: none;
+}
+.form-wrap form .field {
+    margin: 0 auto;
+}
+.form-wrap form button, .form-row button, .user button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6d466b;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 5px auto;
+}
+.form-row button {
+    margin-bottom: 15px;
+}
+.form-wrap form button:hover, .form-row button:hover {
+    background-color: #b49fcc;
+}
+section.lessonView {
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+}
+section.lessonView:last-of-type {
+    border-bottom: none;
+}
+
+
 @media only screen and (max-width: 700px) {
     .main {
         flex-direction: column;
     }
+}
+
+.error {
+  color: red;
 }

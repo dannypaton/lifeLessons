@@ -6,6 +6,7 @@ class LessonPost extends React.Component {
         super();
         this.state = {
             message: '',
+            error: ''
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,6 +20,8 @@ class LessonPost extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
+        if (!this.state.message) this.setState({ error: 'Lesson cannot be empty.' })
         const lesson = Object.assign({}, this.state);
         lesson.userId = this.props.user._id
 
@@ -40,6 +43,7 @@ class LessonPost extends React.Component {
                     <div className="form-row">
                         <button>Post Lesson</button>
                     </div>
+                    {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 </form>
             </div>
         )

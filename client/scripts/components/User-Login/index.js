@@ -7,6 +7,7 @@ class UserLogin extends React.Component {
         this.state = {
             email: '',
             password: '',
+            error: ''
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -29,8 +30,7 @@ class UserLogin extends React.Component {
             if (res.status !== 401) {
                 return res.json()                
             } else {
-                // 4. If the user is invalid, let them know and give them another shot to try again. another shot to try again.                            
-                return console.log('Unauthorized')
+               this.setState({ error: 'Incorrect Password.'})
             }
         })
         .then((json) => {
@@ -66,6 +66,7 @@ class UserLogin extends React.Component {
                         onChange={this.handleChange}
                     />
                     <button>Login</button>
+                    {this.state.error ? <p className='error'>{this.state.error}</p> : ''}
                 </form>
             </div>
         )

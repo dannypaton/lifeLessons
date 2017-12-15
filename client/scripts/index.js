@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
 import LoginWrapper from './components/Login-Wrapper'
 import Profile from './components/Profile'
+import Nav from './components/nav'
 
 import userServices from './services/userServices'
 import lessonServices from './services/lessonServices'
@@ -76,6 +77,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div className='main'>
+					<Nav />
 					{ !this.state.currentUser ?
 						<div>
 							<Route exact path="/" render={(props) => <LoginWrapper {...props} updateCurrentUserState={this.updateCurrentUserState} currentUser={this.state.currentUser} />} /> 

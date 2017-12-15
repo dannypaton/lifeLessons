@@ -405,6 +405,13 @@ img {
   max-width: 100%;
   display: block; }
 
+.navWrapper {
+  background: #333333;
+  color: white;
+  padding: 20px; }
+  .navWrapper a {
+    color: white; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -518,3 +525,6 @@ section.lessonView:last-of-type {
 @media only screen and (max-width: 700px) {
   .main {
     flex-direction: column; } }
+
+.error {
+  color: red; }

@@ -35,20 +35,19 @@ users.createUser = (req, res) => {
 
 // DELETE
 users.deleteUser = (req, res) => {
-	const userId = req.params.id
-	user.remove({ _id: userId }, (err, doc) => {
-	    if (err) {
-	        res.status(500).send(err)
-	    } else {
-	        res.status(200).json({ message: 'Successfully Deleted!' })
-	    }
-	})
+	// const userId = req.params.id
+	// user.remove({ _id: userId }, (err, doc) => {
+	//     if (err) {
+	//         res.status(500).send(err)
+	//     } else {
+	//         res.status(200).json({ message: 'Successfully Deleted!' })
+	//     }
+	// })
 }
 
 //UPDATE
 users.updateUser = (req, res) => {
-	console.log(req.body, 'body')
-
+	if (req.body.email) delete req.body.email
 	User.findOne({ _id: req.params.id })
 		.then(doc => {
 			if (doc) {
