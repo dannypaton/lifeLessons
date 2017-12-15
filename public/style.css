@@ -396,22 +396,6 @@ template {
 html {
   box-sizing: border-box; }
 
-body {
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1000px; }
-
-img {
-  max-width: 100%;
-  display: block; }
-
-.navWrapper {
-  background: #333333;
-  color: white;
-  padding: 20px; }
-  .navWrapper a {
-    color: white; }
-
 * {
   margin: 0;
   padding: 0; }
@@ -423,20 +407,39 @@ a {
 a:hover {
   color: #4FDA8C; }
 
-input, button {
+input,
+button {
   font: 16px/26px "Raleway", sans-serif; }
 
 body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1000px;
   color: #666;
   background-color: #f1f2f2;
   font: 16px/26px "Raleway", sans-serif; }
+
+img {
+  max-width: 100%;
+  display: block; }
+
+.error {
+  color: red; }
+
+.navWrapper {
+  background: #333333;
+  color: white;
+  padding: 20px; }
+  .navWrapper a {
+    color: white; }
 
 .main {
   display: flex;
   justify-content: center;
   width: 100%; }
 
-.form-wrap, .LessonWrapper {
+.form-wrap,
+.LessonWrapper {
   background-color: #fff;
   width: 600px;
   padding: 15px 15px 5px 15px;
@@ -472,7 +475,8 @@ body {
 .form-wrap form {
   padding: 10px; }
 
-.form-wrap form .field-input, .form-row textarea {
+.form-wrap form .field-input,
+.form-row textarea {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   color: inherit;
@@ -499,7 +503,9 @@ body {
 .form-wrap form .field {
   margin: 0 auto; }
 
-.form-wrap form button, .form-row button, .user button {
+.form-wrap form button,
+.form-row button,
+.user button {
   width: 100%;
   padding: 10px;
   background-color: #6d466b;
@@ -512,7 +518,8 @@ body {
 .form-row button {
   margin-bottom: 15px; }
 
-.form-wrap form button:hover, .form-row button:hover {
+.form-wrap form button:hover,
+.form-row button:hover {
   background-color: #b49fcc; }
 
 section.lessonView {
@@ -525,6 +532,3 @@ section.lessonView:last-of-type {
 @media only screen and (max-width: 700px) {
   .main {
     flex-direction: column; } }
-
-.error {
-  color: red; }

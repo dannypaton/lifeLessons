@@ -74,5 +74,5 @@ app.get('*', function (req, res, next) {
 
 // Start your server, and listen on port 8080.
 app.listen(process.env.PORT, function () {
-  console.log("App is now listening on port ${process.env.PORT}!");
+  console.log(`App is now listening on port ${process.env.PORT}!`);
 })
