@@ -18,13 +18,13 @@ const lessons = require('./api/lessons/controller')
 const User = require('./api/users/model')
 const users = require('./api/users/controller')
 
-mongoose.connect('mongodb://localhost/lifeLessons')
+mongoose.connect(process.env.MONGODB_SERVER);
 
 passport.use(User.createStrategy())
 app.use(bodyParser.json())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
-app.use(session({ secret: 'mysecret', resave: false, saveUninitialized: true }))
+app.use(session({ secret: process.env.COOKIE_SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -73,6 +73,6 @@ app.get('*', function (req, res, next) {
 })
 
 // Start your server, and listen on port 8080.
-app.listen(8080, function () {
-  console.log("App is now listening on port 8080!")
+app.listen(process.env.PORT, function () {
+  console.log("App is now listening on port ${process.env.PORT}!");
 })
