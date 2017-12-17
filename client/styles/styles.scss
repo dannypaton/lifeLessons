@@ -27,7 +27,6 @@ button {
 body {
     margin: 0 auto;
     padding: 0;
-    max-width: 1000px;
     color: #666;
     background-color: #f1f2f2;
     font: 16px/26px "Raleway", sans-serif;
@@ -53,8 +52,10 @@ img {
 
 .main {
     display: flex;
+    max-width: 1200px;
     justify-content: center;
     width: 100%;
+    margin: 0 auto;
 }
 
 .form-wrap,
